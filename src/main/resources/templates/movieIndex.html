@@ -50,8 +50,8 @@
                                 <td><img class="image" th:src="${movie.imageUrl}"></td>
                                 <td th:text="${movie.title}"></td>
                                 <td th:text="${movie.category}"></td>
-                                <td th:text="${movie.length} + ' minut'"></td>
-                                <td th:text="'Od ' + ${movie.minAge} + ' lat'"></td>
+                                <td th:text="${movie.length} + ' minutes'"></td>
+                                <td th:text="${movie.minAge} + ' and above'"></td>
                                 <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{/movies/edit/{id}(id=${movie.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                                 <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{/movies/delete/{id}(id=${movie.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                                 <td><a th:href="@{'/movies/' + ${movie.title} + '/reservation'}" class="btn btn-primary"><i class="fa fa-camera-retro fa-lg"></i></a></td>
