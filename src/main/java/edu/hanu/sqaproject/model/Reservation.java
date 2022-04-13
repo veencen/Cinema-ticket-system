@@ -30,10 +30,6 @@ public class Reservation {
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movie movie;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "spektacle_id")
-    private Spectacle spectacle;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

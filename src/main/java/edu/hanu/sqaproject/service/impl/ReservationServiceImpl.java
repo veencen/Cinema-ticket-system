@@ -12,12 +12,10 @@ import edu.hanu.sqaproject.model.Repertoire;
 import edu.hanu.sqaproject.model.Reservation;
 import edu.hanu.sqaproject.model.ReserveSeatConfiguration;
 import edu.hanu.sqaproject.model.SeatReservation;
-import edu.hanu.sqaproject.model.Spectacle;
 import edu.hanu.sqaproject.model.Ticket;
 import edu.hanu.sqaproject.repository.MovieRepository;
 import edu.hanu.sqaproject.repository.RepertoireRepository;
 import edu.hanu.sqaproject.repository.ReservationRepository;
-import edu.hanu.sqaproject.repository.SpectacleRepository;
 import edu.hanu.sqaproject.repository.TicketRepository;
 import edu.hanu.sqaproject.repository.UserRepository;
 
@@ -42,7 +40,6 @@ public class ReservationServiceImpl implements ReservationService {
 
     private final RepertoireRepository repertoireRepository;
     private final MovieRepository movieRepository;
-    private final SpectacleRepository spectacleRepository;
     private final TicketRepository ticketRepository;
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
@@ -56,14 +53,6 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public String showSpectacleReservationPage(final String spectacleName, final Model model) {
-        final Spectacle spectacle = spectacleRepository.findByTitle(spectacleName);
-        final List<Repertoire> repertoires = repertoireRepository.findBySpectacleId(spectacle.getId());
-        model.addAttribute("repertoires", repertoires);
-        return "reservation-spectacle";
-    }
-
-    @Override
     public String showMovieReservationSeatPage(final String movieName, final Long repertoireId, final Model model) {
         reserveSeats(model, repertoireId);
         model.addAttribute("movieName", movieName);
@@ -72,15 +61,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public String spectacleReservationSeatPage(final String spectacleName, final Long repertoireId, final Model model) {
-        reserveSeats(model, repertoireId);
-        model.addAttribute("spectacleName", spectacleName);
-        addRows(model, repertoireId);
-        return "reservation-seat-spectacle";
-    }
-
-    @Override
-    public String reservation(final ReserveSeatConfiguration reserveSeatConfiguration, final Long repertoireId, final Principal principal) {
+    public String reservation(final ReserveSeatConfiguration reserveSeatConfiguration, final Long repertoireId, final Principal principal) throws NullPointerException {
         final List<String> reservedSeats = getReservedSeats(reserveSeatConfiguration);
         if (reservedSeats.size() > 0 && reservedSeats.size() <= 15) {
             final UUID uuid = UUID.randomUUID();
@@ -92,14 +73,8 @@ public class ReservationServiceImpl implements ReservationService {
             final Reservation reservation = new Reservation();
             reservation.setTicket(ticketRepository.findByUuid(uuid).orElse(null));
             Repertoire repertoire = repertoireRepository.findById(repertoireId).orElse(null);
-            try {
-                if (repertoire != null) {
-                    reservation.setMovie(movieRepository.findByTitle(repertoire.getMovie().getTitle()));
-                }
-            } catch (NullPointerException e) {
-                if (repertoire.getSpectacle() != null) {
-                    reservation.setSpectacle(spectacleRepository.findByTitle(repertoire.getSpectacle().getTitle()));
-                }
+            if (repertoire != null) {
+                reservation.setMovie(movieRepository.findByTitle(repertoire.getMovie().getTitle()));
             }
             reservation.setRepertoire(repertoire);
             reservation.setUser(userRepository.findByUsername(principal.getName()));
