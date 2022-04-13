@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}"/>
+</head>
+
+<body>
+
+<div th:replace="index :: nav"></div>
+
+<form class="box" th:action="@{/login}" method="post">
+    <h1>Login </h1>
+
+    <div th:if="${param.error}">
+        <div class="alert alert-danger"><span style="color: white">Incorrect username or password</span></div>
+    </div>
+
+    <div th:if="${param.logout}">
+        <div class="alert alert-info"><span style="color: white">Signed out successfully</span></div>
+    </div>
+
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password" id="hide">
+    <input type="submit" value="Login">
+    <div class="form-group">
+        <span style="color: white">Doesn't have account yet? <a href="/" th:href="@{/register}">Sign up now!</a></span>
+    </div>
+</form>
+
+</body>
+</html>
