@@ -46,11 +46,11 @@ public class UserServiceImpl implements UserService {
     public String registerSuccessfully(final User user, final BindingResult bindingResult) {
         if (userNameExists(user.getUsername())) {
             bindingResult.addError(new FieldError
-                    ("user", "username", "Podany login już istnieje"));
+                    ("user", "username", "The username already exists."));
         }
         if (userEmailExists(user.getEmail())) {
             bindingResult.addError(new FieldError
-                    ("user", "email", "Podany adres e-mail już istnieje"));
+                    ("user", "email", "The e-mail address already exists"));
         }
         if (bindingResult.hasErrors()) {
             return "register";
