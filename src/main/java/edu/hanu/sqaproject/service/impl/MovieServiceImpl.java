@@ -34,7 +34,7 @@ public class MovieServiceImpl implements MovieService {
             return "add-movie";
         }
         movieRepository.save(movie);
-        log.info("Dodano do bazy nowy film " + movie.getTitle());
+        log.info("A new movie has been added to the database " + movie.getTitle());
         return "redirect:/movies/list";
     }
 
@@ -55,7 +55,7 @@ public class MovieServiceImpl implements MovieService {
         movieFromDb.setMinAge(movie.getMinAge());
         movieFromDb.setImageUrl(movie.getImageUrl());
         movieFromDb.setTitle(movie.getTitle());
-        log.info("Edytowano dane filmu " + movie.getTitle());
+        log.info("Edited data of " + movie.getTitle());
         return "redirect:/movies/list";
     }
 
@@ -68,7 +68,7 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.delete(movie);
         final List<Movie> movies = movieRepository.findAll();
         model.addAttribute("movies", movies);
-        log.info("Usunięto film " + movie.getTitle());
+        log.info("Removed movie " + movie.getTitle());
         return "movieIndex";
     }
 
@@ -84,7 +84,7 @@ public class MovieServiceImpl implements MovieService {
     public String addMovieRepertoire(final Repertoire repertoire, final Long movieId, final BindingResult result) {
         repertoire.setMovie(movieRepository.getOne(movieId));
         repertoireRepository.save(repertoire);
-        log.info("Dodano repertuar dla filmu o ID " + movieId);
+        log.info("A show for  " + movieId + "has been added");
         return "redirect:/movies/list";
     }
 
@@ -101,14 +101,14 @@ public class MovieServiceImpl implements MovieService {
     public String updateMovieRepertoire(final Repertoire repertoire, final Long repertoireId, final BindingResult result) {
         final Repertoire repertoireFromDb = repertoireRepository.getOne(repertoireId);
         repertoireFromDb.setDate(repertoire.getDate());
-        log.info("Zaktualizowano dane repertuaru dla " + repertoire.getMovie().getTitle());
+        log.info("Update show data for " + repertoire.getMovie().getTitle());
         return "redirect:/movies/list";
     }
 
     @Override
     public String deleteMovieRepertoire(final Long repertoireId, final Model model) {
         repertoireRepository.deleteById(repertoireId);
-        log.info("Usunięto repertuar o ID " + repertoireId);
+        log.info("Removed show with ID " + repertoireId);
         return "redirect:/movies/list";
     }
 }

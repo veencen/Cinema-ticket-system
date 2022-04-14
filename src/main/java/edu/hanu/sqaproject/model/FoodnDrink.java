@@ -19,4 +19,15 @@ public class FoodnDrink {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "name", unique = true, nullable = false)
+    private String name;
+
+    @Column(name = "category", nullable = false)
+    private String category;
+
+    @Column(name = "description", columnDefinition = "TEXT", nullable = false)
+    private String description;
+
+    @Column(name = "image_url", columnDefinition = "TEXT", nullable = false)
+    private String imageUrl;
 }

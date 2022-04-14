@@ -17,15 +17,13 @@
     <a class="active" th:href="@{'/'}">Home Page</a>
     <div th:if="${#authorization.expression('hasAnyRole(''ADMIN, USER'')')}"><a th:href="@{'/movies/list'}">Movie
         List</a></div>
-    <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{'/movies/showForm'}">Add movies</a>
-    </div>
-    <div th:if="${#authorization.expression('hasAnyRole(''ADMIN, USER'')')}"><a th:href="@{'/fnd'}">Food & Drinks</a>
+    <div th:if="${#authorization.expression('hasAnyRole(''ADMIN, USER'')')}"><a th:href="@{'/fnds/list'}">Food & Drinks</a>
     </div>
     <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{'console'}">Database</a></div>
     <a th:href="@{'/about'}">About</a>
 
     <div class="test">
-        <a sec:authorize="!isAuthenticated()" class="nav-item"><a class="btn btn-outline-light" th:href="@{/login}">Login</a></a>
+        <a sec:authorize="!isAuthenticated()" class="btn btn-outline-light" th:href="@{/login}">Login</a>
 
         <a sec:authorize="isAuthenticated()" class="nav-item dropdown">
             <a class="nav-item" id="logoutNavbarDropdown" role="button"

@@ -101,7 +101,7 @@ public class ReservationServiceImpl implements ReservationService {
         for (final Reservation reservation : repertoire.getReservations()) {
             reservedSeats.addAll(Arrays.asList(reservation.getTicket().getSeat().split(",")));
         }
-        log.info("Zarezerwowane aktualnie miejsca: " + reservedSeats);
+        log.info("Reserved seats: " + reservedSeats);
         return reservedSeats;
     }
 
