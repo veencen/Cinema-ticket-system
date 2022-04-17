@@ -22,13 +22,18 @@ public class FoodnDrinkServiceImpl implements FoodnDrinkService {
     @Override
     public String getFnds(Model model) {
         final List<FoodnDrink> fnds = fndRepository.findAll();
-        model.addAttribute("food and drinks", fnds);
+        model.addAttribute("fnds", fnds);
         return "foodndrinkIndex";
     }
 
     @Override
-    public String addFnds(FoodnDrink fnd, BindingResult result, Model model) {
-        return null;
+    public String addFnd(final FoodnDrink fnd, final BindingResult result, final Model model) {
+        if (result.hasErrors()) {
+            return "add-fnd";
+        }
+        fndRepository.save(fnd);
+        log.info("Added " + fnd.getName() + " successfully to the database");
+        return "redirect:/fnds/list";
     }
 
     @Override

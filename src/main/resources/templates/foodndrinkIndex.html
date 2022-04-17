@@ -32,22 +32,18 @@
                                 <th th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Edit</th>
                                 <th th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Delete</th>
                                 <th>Order</th>
-                                <th th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Add time</th>
 
                             </tr>
                             </thead>
                             <tbody th:each="fnd : ${fnds}">
                             <tr>
-                                <td><img class="image" th:src="${movie.imageUrl}"></td>
-                                <td th:text="${movie.title}"></td>
-                                <td th:text="${movie.category}"></td>
-                                <td th:text="${movie.length} + ' minutes'"></td>
-                                <td th:text="${movie.minAge} + ' and above'"></td>
-                                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{/movies/edit/{id}(id=${movie.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{/movies/delete/{id}(id=${movie.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
-                                <td><a th:href="@{'/movies/' + ${movie.title} + '/reservation'}" class="btn btn-primary"><i class="fa fa-camera-retro fa-lg"></i></a></td>
-                                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{'/movies/admin/'+${movie.title}+'/newRepertoire'}" class="btn btn-primary"><i class="far fa-clock"></i></a></td>
-                            <tr><td colspan="9" class="description" th:text="${movie.description}"></td></tr>
+                                <td><img class="image" th:src="${fnd.imageUrl}"></td>
+                                <td th:text="${fnd.name}"></td>
+                                <td th:text="${fnd.category}"></td>
+                                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{/fnds/edit/{id}(id=${fnd.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{/fnds/delete/{id}(id=${fnd.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                <td><a th:href="@{/fnds/edit/{id}(id=${fnd.id})}" class="btn btn-primary"><i class="fa fa-camera-retro fa-lg"></i></a></td>
+                            <tr><td colspan="9" class="description" th:text="${fnd.description}"></td></tr>
                             </tr>
                             </tbody>
                         </table>
