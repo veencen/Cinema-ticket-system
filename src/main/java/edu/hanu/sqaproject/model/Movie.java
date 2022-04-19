@@ -40,6 +40,9 @@ public class Movie {
     @Column(name = "min_age", nullable = false)
     private Integer minAge;
 
+    @Column(name = "price", nullable = false)
+    private Integer price;
+
     @Column(name = "image_url", columnDefinition = "TEXT", nullable = false)
     private String imageUrl;
 

@@ -1,13 +1,16 @@
 package edu.hanu.sqaproject.controller;
 
 import edu.hanu.sqaproject.model.FoodnDrink;
+import edu.hanu.sqaproject.model.Movie;
 import edu.hanu.sqaproject.service.FoodnDrinkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -43,5 +46,19 @@ public class FoodnDrinkController {
         return fndService.addFnd(foodnDrink, result, model);
     }
 
+    @GetMapping(Routes.EDIT)
+    public String showUpdateFormFnd(@PathVariable("id") final long id, final Model model) {
+        return fndService.showUpdateFormFnd(id, model);
+    }
 
+    @PostMapping(Routes.UPDATE)
+    @Transactional
+    public String updateFnd(@PathVariable("id") final long id, @Validated final FoodnDrink fnd) {
+        return fndService.updateFnd(id, fnd);
+    }
+
+    @GetMapping(Routes.DELETE)
+    public String deleteFnd(@PathVariable("id") final long id, final Model model) {
+        return fndService.deleteFnd(id, model);
+    }
 }

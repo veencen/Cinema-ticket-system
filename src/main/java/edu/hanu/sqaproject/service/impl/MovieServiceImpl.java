@@ -41,7 +41,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public String showUpdateFormMovie(final long id, final Model model) {
         final Movie movie = movieRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Nieprawidłowe ID: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Incorrect ID: " + id));
         model.addAttribute("movie", movie);
         return "update-movie";
     }
@@ -53,6 +53,7 @@ public class MovieServiceImpl implements MovieService {
         movieFromDb.setDescription(movie.getDescription());
         movieFromDb.setLength(movie.getLength());
         movieFromDb.setMinAge(movie.getMinAge());
+        movieFromDb.setPrice(movie.getPrice());
         movieFromDb.setImageUrl(movie.getImageUrl());
         movieFromDb.setTitle(movie.getTitle());
         log.info("Edited data of " + movie.getTitle());

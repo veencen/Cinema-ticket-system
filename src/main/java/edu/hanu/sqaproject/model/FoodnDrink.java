@@ -28,6 +28,9 @@ public class FoodnDrink {
     @Column(name = "description", columnDefinition = "TEXT", nullable = false)
     private String description;
 
+    @Column(name = "price", nullable = false)
+    private Integer price;
+
     @Column(name = "image_url", columnDefinition = "TEXT", nullable = false)
     private String imageUrl;
 }
