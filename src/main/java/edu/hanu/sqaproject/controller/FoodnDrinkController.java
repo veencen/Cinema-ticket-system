@@ -1,7 +1,7 @@
 package edu.hanu.sqaproject.controller;
 
 import edu.hanu.sqaproject.model.FoodnDrink;
-import edu.hanu.sqaproject.model.Movie;
+import edu.hanu.sqaproject.model.Order;
 import edu.hanu.sqaproject.service.FoodnDrinkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,6 +26,7 @@ public class FoodnDrinkController {
         static final String EDIT = ROOT + "/edit/{id}";
         static final String UPDATE = ROOT + "/update/{id}";
         static final String DELETE = ROOT + "/delete/{id}";
+        static final String PURCHASE = ROOT + "/purchase/{id}";
     }
 
     private final FoodnDrinkService fndService;
@@ -60,5 +60,10 @@ public class FoodnDrinkController {
     @GetMapping(Routes.DELETE)
     public String deleteFnd(@PathVariable("id") final long id, final Model model) {
         return fndService.deleteFnd(id, model);
+    }
+
+    @GetMapping(Routes.PURCHASE)
+    public String addToOrder(@PathVariable("id") final long id, final Order order, final FoodnDrink fnd) {
+        return fndService.addToOrder(id, order, fnd);
     }
 }

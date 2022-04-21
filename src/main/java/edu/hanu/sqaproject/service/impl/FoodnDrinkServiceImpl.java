@@ -2,9 +2,9 @@ package edu.hanu.sqaproject.service.impl;
 
 
 import edu.hanu.sqaproject.model.FoodnDrink;
-import edu.hanu.sqaproject.model.Movie;
-import edu.hanu.sqaproject.model.Repertoire;
+import edu.hanu.sqaproject.model.Order;
 import edu.hanu.sqaproject.repository.FoodnDrinkRepository;
+import edu.hanu.sqaproject.repository.OrderRepository;
 import edu.hanu.sqaproject.service.FoodnDrinkService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +20,7 @@ import java.util.List;
 public class FoodnDrinkServiceImpl implements FoodnDrinkService {
 
     private final FoodnDrinkRepository fndRepository;
+    private final OrderRepository orderRepository;
 
     @Override
     public String getFnds(Model model) {
@@ -61,11 +62,21 @@ public class FoodnDrinkServiceImpl implements FoodnDrinkService {
     @Override
     public String deleteFnd(final long id, final Model model) {
         final FoodnDrink fnd = fndRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Nieprawidłowe ID : " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Incorrect ID : " + id));
         fndRepository.delete(fnd);
         final List<FoodnDrink> movies = fndRepository.findAll();
         model.addAttribute("fnd", fnd);
-        log.info("Removed movie " + fnd.getName());
-        return "movieIndex";
+        log.info("Removed fnd " + fnd.getName());
+        return "foodndrinkIndex";
+    }
+
+    @Override
+    public String addToOrder(final long id, final Order order, final FoodnDrink fnd) {
+        final FoodnDrink fndFromDb = fndRepository.getOne(id);
+        order.setName(fndFromDb.getName());
+        order.setPrice(fndFromDb.getPrice());
+        orderRepository.save(order);
+        log.info("The purchase cost " + fndFromDb.getPrice() + " VND");
+        return "redirect:/p-successful";
     }
 }

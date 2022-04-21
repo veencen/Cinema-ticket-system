@@ -1,6 +1,7 @@
 package edu.hanu.sqaproject.service;
 
 import edu.hanu.sqaproject.model.FoodnDrink;
+import edu.hanu.sqaproject.model.Order;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -15,4 +16,6 @@ public interface FoodnDrinkService {
     String updateFnd(final long id, final FoodnDrink fnd);
 
     String deleteFnd(final long id, final Model model);
+
+    String addToOrder(final long id, final Order order, final FoodnDrink fnd);
 }

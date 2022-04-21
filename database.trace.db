@@ -2876,3 +2876,154 @@ update movie set category=?, description=?, image_url=?, length=?, min_age=?, pr
 2022-04-19 08:35:17 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'3,000' (MOVIE: ""PRICE"" INTEGER)"; SQL statement:
 insert into movie (category, description, image_url, length, min_age, price, title, id) values (?, ?, ?, ?, ?, ?, ?, ?) [22018-200]
+2022-04-19 13:46:26 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "id" not found; SQL statement:
+SELECT FROM TICKET where "id" = 610 [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.command.dml.Select.prepare(Select.java:1209)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1589)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-04-19 13:49:19 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP COLUMN[*] MOVIE_ID FROM TICKET"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+Drop column movie_id FROM TICKET [42001-200]
+2022-04-19 14:00:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, TOTAL_PRICE INTEGER NOT NULL, FOODN_DRINK_ID BIGINT, TICKET_ID BIGINT, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, total_price integer not null, foodn_drink_id bigint, ticket_id bigint, primary key (id)) [42001-200]
+2022-04-19 14:00:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE ORDER[*] ADD CONSTRAINT FKRX2M9IMLV10P1CCCI7P8BR8PV FOREIGN KEY (FOODN_DRINK_ID) REFERENCES FND"; expected "identifier"; SQL statement:
+alter table order add constraint FKrx2m9imlv10p1ccci7p8br8pv foreign key (foodn_drink_id) references fnd [42001-200]
+2022-04-19 14:00:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE ORDER[*] ADD CONSTRAINT FKPSU8TVA3QAO0UN085KENW1S3I FOREIGN KEY (TICKET_ID) REFERENCES TICKET"; expected "identifier"; SQL statement:
+alter table order add constraint FKpsu8tva3qao0un085kenw1s3i foreign key (ticket_id) references ticket [42001-200]
+2022-04-19 14:04:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, TOTAL_PRICE INTEGER NOT NULL, FOODN_DRINK_ID BIGINT, TICKET_ID BIGINT, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, total_price integer not null, foodn_drink_id bigint, ticket_id bigint, primary key (id)) [42001-200]
+2022-04-19 14:04:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE ORDER[*] ADD CONSTRAINT FKRX2M9IMLV10P1CCCI7P8BR8PV FOREIGN KEY (FOODN_DRINK_ID) REFERENCES FND"; expected "identifier"; SQL statement:
+alter table order add constraint FKrx2m9imlv10p1ccci7p8br8pv foreign key (foodn_drink_id) references fnd [42001-200]
+2022-04-19 14:04:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE ORDER[*] ADD CONSTRAINT FKPSU8TVA3QAO0UN085KENW1S3I FOREIGN KEY (TICKET_ID) REFERENCES TICKET"; expected "identifier"; SQL statement:
+alter table order add constraint FKpsu8tva3qao0un085kenw1s3i foreign key (ticket_id) references ticket [42001-200]
+2022-04-20 09:39:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, TOTAL_PRICE INTEGER NOT NULL, FOODN_DRINK_ID BIGINT, TICKET_ID BIGINT, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, total_price integer not null, foodn_drink_id bigint, ticket_id bigint, primary key (id)) [42001-200]
+2022-04-20 09:39:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE ORDER[*] ADD CONSTRAINT FKRX2M9IMLV10P1CCCI7P8BR8PV FOREIGN KEY (FOODN_DRINK_ID) REFERENCES FND"; expected "identifier"; SQL statement:
+alter table order add constraint FKrx2m9imlv10p1ccci7p8br8pv foreign key (foodn_drink_id) references fnd [42001-200]
+2022-04-20 09:39:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE ORDER[*] ADD CONSTRAINT FKPSU8TVA3QAO0UN085KENW1S3I FOREIGN KEY (TICKET_ID) REFERENCES TICKET"; expected "identifier"; SQL statement:
+alter table order add constraint FKpsu8tva3qao0un085kenw1s3i foreign key (ticket_id) references ticket [42001-200]
+2022-04-20 10:02:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, TOTAL_PRICE INTEGER NOT NULL, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, total_price integer not null, primary key (id)) [42001-200]
+2022-04-20 10:40:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, TOTAL_PRICE INTEGER NOT NULL, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, total_price integer not null, primary key (id)) [42001-200]
+2022-04-20 10:43:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, TOTAL_PRICE INTEGER NOT NULL, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, total_price integer not null, primary key (id)) [42001-200]
+2022-04-20 11:09:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, TOTAL_PRICE INTEGER NOT NULL, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, total_price integer not null, primary key (id)) [42001-200]
+2022-04-20 13:22:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, NAME VARCHAR(255), PRICE INTEGER, TOTAL_PRICE INTEGER, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, name varchar(255), price integer, total_price integer, primary key (id)) [42001-200]
+2022-04-20 13:26:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, NAME VARCHAR(255), PRICE INTEGER, TOTAL_PRICE INTEGER, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, name varchar(255), price integer, total_price integer, primary key (id)) [42001-200]
+2022-04-20 13:27:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, NAME VARCHAR(255), PRICE INTEGER, TOTAL_PRICE INTEGER, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, name varchar(255), price integer, total_price integer, primary key (id)) [42001-200]
+2022-04-20 13:28:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, NAME VARCHAR(255), PRICE INTEGER, TOTAL_PRICE INTEGER, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, name varchar(255), price integer, total_price integer, primary key (id)) [42001-200]
+2022-04-20 13:28:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT ORDER0_.ID AS ID1_2_, ORDER0_.NAME AS NAME2_2_, ORDER0_.PRICE AS PRICE3_2_, ORDER0_.TOTAL_PRICE AS TOTAL_PR4_2_ FROM ORDER[*] ORDER0_"; expected "identifier"; SQL statement:
+select order0_.id as id1_2_, order0_.name as name2_2_, order0_.price as price3_2_, order0_.total_price as total_pr4_2_ from order order0_ [42001-200]
+2022-04-20 13:30:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE ORDER[*] (ID BIGINT NOT NULL, NAME VARCHAR(255), PRICE INTEGER, TOTAL_PRICE INTEGER, PRIMARY KEY (ID))"; expected "identifier"; SQL statement:
+create table order (id bigint not null, name varchar(255), price integer, total_price integer, primary key (id)) [42001-200]
+2022-04-20 16:05:08 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ORDERS[*]"; SQL statement:
+ORDERS [42000-200]

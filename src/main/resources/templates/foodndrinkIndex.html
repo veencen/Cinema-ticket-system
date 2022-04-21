@@ -44,7 +44,7 @@
                                 <td th:text="${fnd.price} + ' VND'"></td>
                                 <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{/fnds/edit/{id}(id=${fnd.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                                 <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{/fnds/delete/{id}(id=${fnd.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
-                                <td><a th:href="@{/fnds/edit/{id}(id=${fnd.id})}" class="btn btn-primary"><i class="fa fa-camera-retro fa-lg"></i></a></td>
+                                <td><a th:href="@{/fnds/purchase/{id}(id=${fnd.id})}" class="btn btn-primary"><i class="fa fa-camera-retro fa-lg"></i></a></td>
                             <tr><td colspan="9" class="description" th:text="${fnd.description}"></td></tr>
                             </tr>
                             </tbody>

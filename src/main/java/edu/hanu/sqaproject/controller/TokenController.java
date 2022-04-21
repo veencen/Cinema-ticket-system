@@ -17,6 +17,8 @@ class TokenController {
         static final String TOKEN = "/token";
         static final String HELLO = "/hello";
         static final String SUCCESSFUL = "/successful";
+        static final String PSUCCESSFUL = "/p-successful";
+        static final String OSUCCESSFUL = "o-successful";
         static final String UNSUCCESSFUL = "/unsuccessful";
     }
 
@@ -35,6 +37,16 @@ class TokenController {
     @GetMapping(Routes.SUCCESSFUL)
     String successful() {
         return "successful";
+    }
+
+    @GetMapping(Routes.PSUCCESSFUL)
+    String psuccessful() {
+        return "p-successful";
+    }
+
+    @GetMapping(Routes.OSUCCESSFUL)
+    String osuccessful() {
+        return "o-successful";
     }
 
     @GetMapping(Routes.UNSUCCESSFUL)
