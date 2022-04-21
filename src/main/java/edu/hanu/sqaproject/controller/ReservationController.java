@@ -1,6 +1,9 @@
 package edu.hanu.sqaproject.controller;
 
+import edu.hanu.sqaproject.model.Movie;
+import edu.hanu.sqaproject.model.Order;
 import edu.hanu.sqaproject.model.ReserveSeatConfiguration;
+import edu.hanu.sqaproject.model.Ticket;
 import edu.hanu.sqaproject.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -40,7 +43,7 @@ class ReservationController {
 
     @PostMapping(Routes.SEAT_RESERVATION)
     public String reserve(@ModelAttribute("seatInfo") final ReserveSeatConfiguration reserveSeatConfiguration,
-                          @PathVariable("repertoireId") final Long repertoireId, final Principal principal) {
-        return reservationService.reservation(reserveSeatConfiguration, repertoireId, principal);
+                          @PathVariable("repertoireId") final Long repertoireId, final Movie movie, final Order order, final Principal principal) {
+        return reservationService.reservation(reserveSeatConfiguration, repertoireId, movie, order, principal);
     }
 }

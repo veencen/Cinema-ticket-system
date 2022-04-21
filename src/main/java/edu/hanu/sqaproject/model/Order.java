@@ -23,7 +23,4 @@ public class Order {
 
     @Column(name = "price")
     private Integer price;
-
-    @Column(name = "totalPrice")
-    private Integer totalPrice;
 }

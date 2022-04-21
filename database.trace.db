@@ -3027,3 +3027,6 @@ create table order (id bigint not null, name varchar(255), price integer, total_
 2022-04-20 16:05:08 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ORDERS[*]"; SQL statement:
 ORDERS [42000-200]
+2022-04-21 13:11:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TALBE[*] ORDERS DROP COLUMN TOTAL_PRICE"; expected "TABLE, USER, INDEX, SCHEMA, SEQUENCE, VIEW"; SQL statement:
+alter talbe orders drop column total_price [42001-200]

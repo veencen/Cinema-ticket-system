@@ -1,5 +1,7 @@
 package edu.hanu.sqaproject.service.impl;
 
+import edu.hanu.sqaproject.model.*;
+import edu.hanu.sqaproject.repository.*;
 import edu.hanu.sqaproject.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,17 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import edu.hanu.sqaproject.model.Movie;
-import edu.hanu.sqaproject.model.Repertoire;
-import edu.hanu.sqaproject.model.Reservation;
-import edu.hanu.sqaproject.model.ReserveSeatConfiguration;
-import edu.hanu.sqaproject.model.SeatReservation;
-import edu.hanu.sqaproject.model.Ticket;
-import edu.hanu.sqaproject.repository.MovieRepository;
-import edu.hanu.sqaproject.repository.RepertoireRepository;
-import edu.hanu.sqaproject.repository.ReservationRepository;
-import edu.hanu.sqaproject.repository.TicketRepository;
-import edu.hanu.sqaproject.repository.UserRepository;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -41,6 +32,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final RepertoireRepository repertoireRepository;
     private final MovieRepository movieRepository;
     private final TicketRepository ticketRepository;
+    private final OrderRepository orderRepository;
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
 
@@ -61,7 +53,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public String reservation(final ReserveSeatConfiguration reserveSeatConfiguration, final Long repertoireId, final Principal principal) throws NullPointerException {
+    public String reservation(final ReserveSeatConfiguration reserveSeatConfiguration, final Long repertoireId, final Movie movie, final Order order, final Principal principal) throws NullPointerException {
         final List<String> reservedSeats = getReservedSeats(reserveSeatConfiguration);
         if (reservedSeats.size() > 0 && reservedSeats.size() <= 15) {
             final UUID uuid = UUID.randomUUID();
@@ -79,6 +71,21 @@ public class ReservationServiceImpl implements ReservationService {
             reservation.setRepertoire(repertoire);
             reservation.setUser(userRepository.findByUsername(principal.getName()));
             reservationRepository.save(reservation);
+
+            long movieId = movieRepository.findByTitle(repertoire.getMovie().getTitle()).getId();
+
+
+            final Movie smovie = movieRepository.findById(movieId)
+                    .orElseThrow(() -> new IllegalArgumentException("Incorrect ID: " + movieId));
+
+            int moviePrice = smovie.getPrice();
+            int seatNum = reservedSeats.size();
+            int moviePriceSum = seatNum * moviePrice;
+
+            order.setName(smovie.getTitle());
+            order.setPrice(moviePriceSum);
+            orderRepository.save(order);
+
             return "redirect:/successful";
         } else {
             return "redirect:/unsuccessful";

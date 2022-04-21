@@ -29,15 +29,22 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Price</th>
-                            </tr>
                             </thead>
+                            </tr>
                             <tbody th:each="item : ${orders}">
                             <tr>
                                 <td th:text="${item.name}"></td>
                                 <td th:text="${item.price} + ' VND'"></td>
                             </tr>
                             </tbody>
+                            <thead>
+                            <tr>
+                                <th>Total Price</th>
+                                <th><b th:text="${#aggregates.sum(orders.![price])}"></th>
+                            </tr>
+                            </thead>
                         </table>
+                            <a href="/order/confirm" class="btn btn-primary">Confirm Order</a>
                     </div>
 
                 </div>
