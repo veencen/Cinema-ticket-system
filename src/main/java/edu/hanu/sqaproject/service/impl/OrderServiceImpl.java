@@ -1,12 +1,11 @@
 package edu.hanu.sqaproject.service.impl;
 
-import edu.hanu.sqaproject.model.FoodnDrink;
+
 import edu.hanu.sqaproject.model.Order;
 import edu.hanu.sqaproject.repository.OrderRepository;
 import edu.hanu.sqaproject.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 

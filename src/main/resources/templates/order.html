@@ -23,6 +23,7 @@
         <div class="card-body">
             <div th:switch="${orders}" class="container my-5">
                 <div class="col-md-20">
+                    <div th:case="null">Orders is empty</div>
                     <div th:case="*">
                         <table class="table table-striped table-responsive-md">
                             <thead>
@@ -40,11 +41,11 @@
                             <thead>
                             <tr>
                                 <th>Total Price</th>
-                                <th><b th:text="${#aggregates.sum(orders.![price])} + ' VND'"></th>
+                                <th><b th:text="${#aggregates.sum(orders.![price])} + ' VND'"></b></th>
                             </tr>
                             </thead>
                         </table>
-                            <a href="/order/confirm" class="btn btn-primary">Confirm Order</a>
+                            <a href="/order/confirm" class="btn btn-primary">Confirm orders</a>
                     </div>
 
                 </div>
